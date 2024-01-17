@@ -7,13 +7,14 @@
 #
 Name     : epsonscan2
 Version  : 6.7.63.0.1
-Release  : 1
+Release  : 2
 URL      : https://download3.ebz.epson.net/dsc/f/03/00/15/17/69/0ef02802c476a6564f13cac929859c394f40326a/epsonscan2-6.7.63.0-1.src.tar.gz
 Source0  : https://download3.ebz.epson.net/dsc/f/03/00/15/17/69/0ef02802c476a6564f13cac929859c394f40326a/epsonscan2-6.7.63.0-1.src.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1 MIT
 Requires: epsonscan2-bin = %{version}-%{release}
+Requires: epsonscan2-config = %{version}-%{release}
 Requires: epsonscan2-lib = %{version}-%{release}
 Requires: epsonscan2-license = %{version}-%{release}
 BuildRequires : boost-dev
@@ -35,10 +36,19 @@ Please read out the license and Privacy Statement(http://download.ebz.epson.net/
 %package bin
 Summary: bin components for the epsonscan2 package.
 Group: Binaries
+Requires: epsonscan2-config = %{version}-%{release}
 Requires: epsonscan2-license = %{version}-%{release}
 
 %description bin
 bin components for the epsonscan2 package.
+
+
+%package config
+Summary: config components for the epsonscan2 package.
+Group: Default
+
+%description config
+config components for the epsonscan2 package.
 
 
 %package doc
@@ -75,7 +85,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1705450057
+export SOURCE_DATE_EPOCH=1705452308
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -111,7 +121,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1705450057
+export SOURCE_DATE_EPOCH=1705452308
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/epsonscan2
 cp %{_builddir}/epsonscan2-6.7.63.0-1/COPYING %{buildroot}/usr/share/package-licenses/epsonscan2/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -120,10 +130,12 @@ cp %{_builddir}/epsonscan2-6.7.63.0-1/thirdparty/rapidjson/license.txt %{buildro
 pushd clr-build
 %make_install
 popd
+## install_append content
+mv -i %{buildroot}/lib %{buildroot}/usr/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
-/lib/udev/rules.d/60-epsonscan2.rules
 /usr/lib64/epsonscan2/Resources/Icons/bmp_mss_image@2x.png
 /usr/lib64/epsonscan2/Resources/Icons/btn_config@2x.png
 /usr/lib64/epsonscan2/Resources/Icons/btn_help.png
@@ -1905,6 +1917,10 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/epsonscan2
+
+%files config
+%defattr(-,root,root,-)
+/usr/lib/udev/rules.d/60-epsonscan2.rules
 
 %files doc
 %defattr(0644,root,root,0755)

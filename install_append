@@ -1,0 +1,1 @@
+mv -i %{buildroot}/lib %{buildroot}/usr/
