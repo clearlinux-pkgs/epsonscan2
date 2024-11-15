@@ -1,1 +1,6 @@
-mv -i %{buildroot}/lib %{buildroot}/usr/
+# Put udev rules in the right place
+mv %{buildroot}/lib %{buildroot}/usr/
+
+# Put sane config in the right place
+mkdir -p %{buildroot}/usr/share/defaults/sane
+mv %{buildroot}/etc/sane.d/dll.d %{buildroot}/usr/share/defaults/sane/

@@ -1,0 +1,2 @@
+rm -f src/ScanSDK/Src/SDK/epsonscansdk
+bash ./cleancmake.sh ||:
