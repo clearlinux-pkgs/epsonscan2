@@ -7,7 +7,7 @@
 #
 Name     : epsonscan2
 Version  : 6.7.70.0.1
-Release  : 5
+Release  : 6
 URL      : https://download3.ebz.epson.net/dsc/f/03/00/16/14/37/7577ee65efdad48ee2d2f38d9eda75418e490552/epsonscan2-6.7.70.0-1.src.tar.gz
 Source0  : https://download3.ebz.epson.net/dsc/f/03/00/16/14/37/7577ee65efdad48ee2d2f38d9eda75418e490552/epsonscan2-6.7.70.0-1.src.tar.gz
 Summary  : No detailed summary available
@@ -102,7 +102,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1731687903
+export SOURCE_DATE_EPOCH=1731691128
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -140,7 +140,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1731687903
+export SOURCE_DATE_EPOCH=1731691128
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/epsonscan2
 cp %{_builddir}/epsonscan2-6.7.70.0-1/COPYING %{buildroot}/usr/share/package-licenses/epsonscan2/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -2047,6 +2047,8 @@ mv %{buildroot}/etc/sane.d/dll.d %{buildroot}/usr/share/defaults/sane/
 /usr/lib64/epsonscan2/libes2command.so
 /usr/lib64/epsonscan2/libes2fileformat.so
 /usr/lib64/epsonscan2/libsane-epsonscan2.so
+/usr/lib64/sane/libsane-epsonscan2.so.1
+/usr/lib64/sane/libsane-epsonscan2.so.1.0.0
 
 %files license
 %defattr(0644,root,root,0755)
